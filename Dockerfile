@@ -13,7 +13,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 FROM python:3.9-slim-bullseye
 
 ENV EZBEQ_CONFIG_HOME=/config
-ENV PIP_ROOT_USER_ACTION=ignore
 
 COPY --from=builder /opt/venv /opt/venv
 
