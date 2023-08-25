@@ -7,6 +7,8 @@ on:
       - 'README.md'
   workflow_dispatch:
     branches: ['*']
+  repository_dispatch:
+    types: [ trigger ]
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
