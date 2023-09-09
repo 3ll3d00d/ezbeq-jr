@@ -21,7 +21,7 @@ VOLUME ["/config"]
 
 ENV PATH="/opt/venv/bin:${PATH}"
 
-RUN apt-get update && apt-get install --no-install-recommends -y curl
+RUN apt-get update && apt-get install --no-install-recommends -y curl && apt-get install --no-install-recommends -y sqlite3
 
 HEALTHCHECK --interval=10s --timeout=2s \
   CMD curl -f -s --show-error http://localhost:8080/api/1/version || exit 1
