@@ -1,1 +1,1 @@
-ezbeq @ git+https://github.com/3ll3d00d/ezbeq@debug
+ezbeq==2.0.0a18
