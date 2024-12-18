@@ -60,6 +60,15 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     # SQLite database command-line tool
     sqlite3
 
+# Create a non-root user and group for running the application
+RUN groupadd -r ezbeq && useradd -r -g ezbeq ezbeq
+
+# Set ownership of the application and configuration directories to the new user
+RUN chown -R ezbeq:ezbeq /app /config
+
+# Switch to the non-root user
+USER ezbeq
+
 # Download and install the pre-built minidsp-rs binary
 # Using the pre-built binary avoids the need to compile minidsp-rs from source, saving time and reducing complexity.
 RUN curl -L -o /usr/local/bin/minidsp https://github.com/mrene/minidsp-rs/releases/latest/download/minidsp && \
