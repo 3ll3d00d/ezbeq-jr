@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  ezbeq-jr:
+    image: ezbeq-jr
+    container_name: ezbeq
+    #user: "1001:1001"  # Set the user by UID:GID
+    build:
+      context: .     # Build context, assuming Dockerfile is in the same directory
+    network_mode: "host"  # Use host networking
+    volumes:
+      - ./config:/config  # Mount local config directory to container
+    environment:
+      - EZBEQ_CONFIG_HOME=/config  # Set config home environment variable
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:8080/api/1/version"]
+    #   interval: 10s
+    #   timeout: 2s
+    #   retries: 3
+    restart: unless-stopped  # Automatically restart unless stopped manually
