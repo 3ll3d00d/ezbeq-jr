@@ -30,8 +30,8 @@ Yes.
 Yes, see https://github.com/3ll3d00d/ezbeq/blob/main/.github/workflows/create-app.yaml#L108
 
 > Why is this not mentioned in the ezBEQ readme?
- 
-It is, in the [Docker section](https://github.com/3ll3d00d/ezbeq/tree/docker-readme?tab=readme-ov-file#docker).
+
+It is, in the [Docker section](https://github.com/3ll3d00d/ezbeq?tab=readme-ov-file#docker).
 
 
 > What architectures are supported?
