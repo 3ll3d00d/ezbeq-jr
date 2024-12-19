@@ -1,20 +1,23 @@
-version: "3.8"
-
 services:
   ezbeq-jr:
-    image: ezbeq-jr
+    image: 3ll3d00d/ezbeq-jr
     container_name: ezbeq
-    #user: "1001:1001"  # Set the user by UID:GID
-    build:
-      context: .     # Build context, assuming Dockerfile is in the same directory
-    network_mode: "host"  # Use host networking
-    volumes:
-      - ./config:/config  # Mount local config directory to container
     environment:
       - EZBEQ_CONFIG_HOME=/config  # Set config home environment variable
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:8080/api/1/version"]
-    #   interval: 10s
-    #   timeout: 2s
-    #   retries: 3
     restart: unless-stopped  # Automatically restart unless stopped manually
+
+    # To dynamically customise this compose file, you can create a docker-compose.override.yaml file in the same directory, with the settings you want
+
+    # Set the user to run as
+    # user: X:Y  # Set the user by UID:GID
+
+    # volumes:
+      # - /apps/ezbeq/config:/config  # Mount local config directory to container
+
+    # Your port mapping setting
+    # ports:
+      # - "8080:8080"
+    
+    # Optional hostname configs, depending on your ezbeq settings
+    # extra_hosts:
+      # - "minidsp:192.168.1.86"
