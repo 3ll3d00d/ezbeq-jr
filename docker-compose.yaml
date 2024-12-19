@@ -1,6 +1,6 @@
 services:
-  ezbeq-jr:
-    image: 3ll3d00d/ezbeq-jr
+  ezbeq-docker:
+    image: 3ll3d00d/ezbeq-docker
     container_name: ezbeq
     environment:
       - EZBEQ_CONFIG_HOME=/config  # Set config home environment variable
