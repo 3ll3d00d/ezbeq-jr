@@ -9,12 +9,6 @@ WORKDIR /app
 RUN apt-get update && apt-get install --no-install-recommends -y \
     # Tools for compiling and building packages
     build-essential \
-    # SSL library development headers
-    libssl-dev \
-    # Foreign Function Interface library headers
-    libffi-dev \
-    # YAML parser and emitter library headers
-    libyaml-dev \
     # Utility for downloading files
     curl \
     # Python virtual environment creation tool
