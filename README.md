@@ -13,7 +13,7 @@ JR stands for [JRiver Media Center](https://www.jriver.com)
 
 > Does this docker image work for [MiniDSP](https://www.minidsp.com) devices?
 
-No, MiniDSP needs additional binaries
+No, MiniDSP needs additional binaries. See issue [#79](https://github.com/3ll3d00d/ezbeq/issues/79).
 
 > Does this build and publish an image for every ezBEQ release?
 
