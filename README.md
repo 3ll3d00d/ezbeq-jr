@@ -1,4 +1,4 @@
-# ezbeq-jr
+# ezbeq-docker
 
 Creates and publishes an image for [ezBEQ](https://github.com/3ll3d00d/ezbeq) to github packages, for use with [JRiver Media Center](https://www.jriver.com), or any ezBEQ client that uses the [MiniDSP-RS](https://github.com/mrene/minidsp-rs) project.
 
@@ -16,10 +16,6 @@ Creates and publishes an image for [ezBEQ](https://github.com/3ll3d00d/ezbeq) to
 Example docker compose file for your reference: [docker-compose.yaml](./docker-compose.yaml)
 
 ## FAQ
-
-> Why is it called `-jr`?
- 
-JR stands for [JRiver Media Center](https://www.jriver.com)
 
 > Does this docker image work for [MiniDSP](https://www.minidsp.com) devices?
 
