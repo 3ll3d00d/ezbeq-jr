@@ -58,28 +58,36 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     # Utility for downloading files
     curl \
     # SQLite database command-line tool
-    sqlite3
+    sqlite3 \
+    # minidsp binary is dynamically linked against libusb-1.0.so.0 and expects it to be available in the environment, even if the functionality it provides (USB communication) isn’t being used
+    libusb-1.0-0
+
+# Dynamically download and install the correct minidsp binary based on architecture
+RUN ARCH=$(dpkg --print-architecture) && \
+    case "$ARCH" in \
+      amd64) ARCH="x86_64-unknown-linux-gnu" ;; \
+      arm64) ARCH="aarch64-unknown-linux-gnu" ;; \
+      armhf) ARCH="arm-linux-gnueabihf-rpi" ;; \
+      *) echo "Unsupported architecture: $ARCH"; exit 1 ;; \
+    esac && \
+    URL="https://github.com/mrene/minidsp-rs/releases/latest/download/minidsp.${ARCH}.tar.gz" && \
+    curl -L -o minidsp.${ARCH}.tar.gz "$URL" && \
+    tar -xzf minidsp.${ARCH}.tar.gz && \
+    mv minidsp /usr/local/bin/minidsp && \
+    chmod +x /usr/local/bin/minidsp
 
 # Create a non-root user and group for running the application
 RUN groupadd -r ezbeq && useradd -r -g ezbeq ezbeq
 
-# Set ownership of the application and configuration directories to the new user
-RUN chown -R ezbeq:ezbeq /app /config
+# Set ownership for /app
+RUN chown -R ezbeq:ezbeq /app
 
 # Switch to the non-root user
 USER ezbeq
 
-# Download and install the pre-built minidsp-rs binary
-# Using the pre-built binary avoids the need to compile minidsp-rs from source, saving time and reducing complexity.
-RUN curl -L -o /usr/local/bin/minidsp https://github.com/mrene/minidsp-rs/releases/latest/download/minidsp && \
-    chmod +x /usr/local/bin/minidsp
-
 # Define a health check for the application to verify it's running correctly
 HEALTHCHECK --interval=10s --timeout=2s \
   CMD curl -f -s --show-error http://localhost:8080/api/1/version || exit 1
-
-# Expose port 8080 for the application to listen on
-EXPOSE 8080
 
 # Define the default command to run the ezbeq application
 CMD [ "ezbeq" ]
