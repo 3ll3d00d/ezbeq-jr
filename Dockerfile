@@ -1,5 +1,6 @@
 # Build stage: Used to prepare the application with all necessary tools and dependencies
-FROM python:3.11-slim-bullseye AS builder
+# Using python:3.11-slim-bookworm for linux/amd64 to support minidsp requiring glibc >= 2.32
+FROM python:3.11-slim-bookworm AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -35,7 +36,7 @@ COPY requirements.txt ./
 RUN pip install --pre --no-cache-dir -r requirements.txt
 
 # Runtime stage: A clean, lightweight image for running the application
-FROM python:3.11-slim-bullseye
+FROM python:3.11-slim-bookworm
 
 # Set the environment variable for ezbeq configuration
 ENV EZBEQ_CONFIG_HOME=/config
