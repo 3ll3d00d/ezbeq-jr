@@ -17,8 +17,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libyaml-dev \
     # Utility for downloading files
     curl \
-    # Git for version control
-    git \
     # Python virtual environment creation tool
     python3-venv && \
     python -m pip install --upgrade pip  # Upgrade pip to the latest version
