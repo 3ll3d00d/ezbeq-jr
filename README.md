@@ -31,7 +31,7 @@ Yes, see https://github.com/3ll3d00d/ezbeq/blob/main/.github/workflows/create-ap
 
 > Why is this not mentioned in the ezBEQ readme?
  
-It is, here: XXXXXX WIP!
+It is, here: https://github.com/3ll3d00d/ezbeq/tree/docker-readme?tab=readme-ov-file#docker
 
 
 > What architectures are supported?
